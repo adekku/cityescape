@@ -1,5 +1,4 @@
 <?php  require_once('require/header.php'); ?>
-<?php  require_once('require/session.php'); ?>
 
 <main>
 <p></p>
@@ -18,36 +17,36 @@
 
 <form action="./assets/mvc-logic/add-center.php" method="POST" enctype="multipart/form-data">
   <div class="mb-3">
-    <label class="form-label">Image</label>
+    <label class="form-label">Изображение</label>
     <input type="file" name="image_tourism_center" class="form-control">
   </div>
 
   <div class="mb-3">
-    <label class="form-label">Name</label>
-    <input type="text" name="name" placeholder="ex. Rixos" class="form-control">
+    <label class="form-label">Имя</label>
+    <input type="text" name="name" placeholder="Kitkat" class="form-control">
   </div>
 
   <div class="mb-3">
-    <label class="form-label">Country</label>
-    <input type="text" name="country" placeholder="ex. Turkey" class="form-control">
+    <label class="form-label">Страна</label>
+    <input type="text" name="country" placeholder="Russia" class="form-control">
   </div>
 
   <div class="mb-3">
-    <label class="form-label">Description</label>
-    <input type="text" name="description" placeholder="Rixos offers exceptional escapes that go beyond the imagination to open a new world of horizons for our guests." class="form-control">
+    <label class="form-label">Описание</label>
+    <input type="text" name="description" placeholder="Серия шоколадных батончиков" class="form-control">
   </div>
 
   <div class="mb-3">
-    <label class="form-label">Body</label>
-    <input type="text" name="body" placeholder="At Rixos, all-inclusive is synonymous with luxury. Our unique All Inclusive – All Exclusive offering combines all-inclusive advantages with exclusive privileges." class="form-control">
+    <label class="form-label">Основной Текст</label>
+    <input type="text" name="body" placeholder="Срок годности: около 9 месяцев с даты изготовления. Хранить при температуре от +15 °C до +21 °C при относительной влажности не более 75 %." class="form-control">
   </div>
 
   <div class="mb-3">
-    <label class="form-label">Tags</label>
-    <input type="text" name="tags" placeholder="hotel, Asia, expensive" class="form-control">
+    <label class="form-label">Тэги</label>
+    <input type="text" name="tags" placeholder="шоколад, батончик, Nestle" class="form-control">
   </div>
 
-  <button class="btn btn-success" type="submit">Add</button>
+  <button class="btn btn-success" type="submit">Добавить</button>
 </form>
 </main>
 

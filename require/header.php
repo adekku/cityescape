@@ -1,3 +1,4 @@
+<?php session_start() ?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -11,6 +12,8 @@
 
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" type="text/css" href="./assets/css/main.css?v=<?php echo time(); ?>">
+
     <!-- title tag -->
     <title>cityescape</title>
   </head>
@@ -19,17 +22,20 @@
     <section id="navigation_container">
       <div id="branding"><a href="index.php">
           <h1 class="logo-container __center">
-            <div class="city">city</div>
-            <div class="es">es</div>
-            <div class="cape">cape</div>
+            <div class="city">Apple</div>
+            <div class="es">City</div>
+            <div class="cape">Corps</div>
           </h1></a></div>
       <label for="menu_icon"> <i class="fa fa-bars"></i></label>
       <input id="menu_icon" type="checkbox">
       <menu>
-      <a href="blog.php"> Все Тур. Центры</a>
+      <a href="blog.php"> Обзор </a>
       <a href="about.php"> О Нас</a>
       <a href="contact.php"> Свяжитесь с нами</a>
       <a href="admin-login.php"> Админ Панель</a>
+      <a href="login.php">Войти / Зарегистрироваться</a>
+      <a href="orders.php">Здравствуйте, <?php echo($_SESSION['user']['full_name']) ?></a>
+      
       </menu>
     </section>
 </header>

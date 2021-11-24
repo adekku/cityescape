@@ -3,22 +3,25 @@
 
 <main>
 <p></p>
-<h1>Current tourism centers</h1>
+<h1>Товары в обороте</h1>
 <p>
-  <a href="admin-add.php" class="btn btn-outline-success">Add tourism center</a>
+  <a href="admin-add.php" class="btn btn-outline-success">Добавить новый товар</a>
+</p>
+<p>
+  <a href="admin-manage-orders.php" class="btn btn-outline-primary">Управлять заказами</a>
 </p>
 
 <table class="table table-admin">
   <thead>
     <tr>
       <th scope="col">id</th>
-      <th scope="col">image</th>
-      <th scope="col">name</th>
-      <th scope="col">country</th>
-      <th scope="col">description</th>
-      <th scope="col">body</th>
-      <th scope="col">tags</th>
-      <th scope="col">delete</th>
+      <th scope="col">Изображение</th>
+      <th scope="col">Имя</th>
+      <th scope="col">Страна</th>
+      <th scope="col">Описание</th>
+      <th scope="col">Основной Текст</th>
+      <th scope="col">Тэги</th>
+      <th scope="col">Удалить</th>
     </tr>
   </thead>
   <tbody>
@@ -35,7 +38,7 @@
         <td><?= $center['tags'] ?></td>
         <td>
           <form action="./assets/mvc-logic/delete-center.php" method="POST">
-            <button class="btn btn-outline-danger d-block" name="id" value="<?=$center['id'] ?>">delete</button>
+            <button class="btn btn-outline-danger d-block" name="id" value="<?=$center['id'] ?>">Удалить</button>
           </form>
         </td>
       </tr>

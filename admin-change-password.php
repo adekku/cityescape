@@ -1,6 +1,5 @@
 <?php
 require_once('./require/connect.php');
-require_once('./require/session.php');
 
 error_reporting(0);
 
@@ -21,7 +20,7 @@ if($_POST['newpassword'] != '' && $_POST['repeatpassword'] != '' && $_POST['curr
     }
   }
 } else {
-  $_SESSION['message'] = 'passwords do not match';
+  $_SESSION['message'] = 'Произошла ошибка при обработке данных';
 }
 
 ?>
@@ -36,19 +35,19 @@ if($_POST['newpassword'] != '' && $_POST['repeatpassword'] != '' && $_POST['curr
   }
 ?>
 <form action="" method="POST">
-  <label for="" class="form-label">Current Password</label>
+  <label for="" class="form-label">Используемый пароль</label>
   <input class="form-control" type="text" placeholder="exampleusername" required name="currentpassword">
 
-  <label for="" class="form-label">New Password</label>
+  <label for="" class="form-label">Новый Пароль</label>
   <input class="form-control" type="password" placeholder="examplenewpassword" required name="newpassword">
 
-  <label for="" class="form-label">Repeat password</label>
+  <label for="" class="form-label">Повторите новый пароль</label>
   <input class="form-control" type="password" placeholder="examplerepeatpassword" required name="repeatpassword">
 
-  <button class="btn btn-success" type="submit">Change password</button>
+  <button class="btn btn-success" type="submit">Поменять пароль</button>
         
   <p class="textCenter">
-      <a href="./admin-change-password.php">Change Password</a>
+      <a href="./admin-login.php">Вернуться к Авторизации</a>
   </p>
 </form>
 

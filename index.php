@@ -2,7 +2,7 @@
     <section id="above-the-fold">
       <div class="container_wrapper">
         <h1 id="above-the-fold__description">
-          Туристическая компания cityescape
+          Система регулирования поставок Apple City Corps
         </h1>
       </div>
     </section>

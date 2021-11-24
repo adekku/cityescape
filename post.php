@@ -1,5 +1,6 @@
 <?php require_once('require/header.php'); ?>
 <?php require_once('./assets/mvc-logic/view-post.php'); ?>
+
   <body id="post__single-page">
     <div class="container_wrapper">
       <section id="post-featured-image">
@@ -32,5 +33,37 @@
           <h6>Тэги: <?php echo $center['tags'] ?> </h6>
         </div>
       </section>
+
+
+      <h1>Оформить Заказ</h1>
+      <!-- <?php var_dump($center) ?> -->
+      <!-- <?php var_dump($_SESSION['user']['id']); ?> -->
+      <form action="./assets/mvc-logic/make-order.php/?user_id=<?php echo $_SESSION['user']['id'] ?>&product_id=<?php echo $center['id'] ?>&product_name=<?php echo $center['name']?>" method="POST">
+        <div>
+          <label for="">Количество(шт)</label>
+          <input type="" name="quantity" class="form-control" required>
+        </div>
+
+        <div>
+          <label for="">Адрес доставки</label>
+          <input type="text" name="shipment_location" class="form-control" placeholder="" required>            
+        </div>
+
+        <div>
+          <label for="">Дополнительная информация</label>
+          <textarea name="additional_information" cols="30" rows="10" class="form-control"></textarea>
+        </div>
+
+        <button type="submit">Отправить заказ на рассмотрение</button>
+      </form>
     </div>
+
+    <?php
+      if(isset($_SESSION['order_status'])){
+          echo '<p class="msg">'.$_SESSION['order_status'].'</p>';
+          unset($_SESSION['order_status']);
+      }
+
+    ?>
+
 <?php require_once('require/footer.php'); ?>

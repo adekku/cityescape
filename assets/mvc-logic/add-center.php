@@ -18,18 +18,18 @@ function post_is_all_set() {
 }
 
 function get_current_max_id($pdo) {
-  $sql = "INSERT INTO centers(image_path,name,country,description,body,tags) 
+  $sql = "INSERT INTO products(image_path,name,country,description,body,tags) 
                       VALUES ('','','','','','')";
   $statement = $pdo -> prepare($sql);
   $statement -> execute();
 
-  $sql = "SELECT MAX(id) FROM centers";
+  $sql = "SELECT MAX(id) FROM products";
   $statement = $pdo -> prepare($sql);
   $statement -> execute();
   $result = $statement -> fetch();  
   $current_max_id = intval( $result['MAX(id)'] );
 
-  $sql = 'DELETE FROM centers WHERE id=:id';
+  $sql = 'DELETE FROM products WHERE id=:id';
   $statement = $pdo -> prepare($sql);
   $statement -> bindValue(':id', $current_max_id);
   $statement -> execute();
@@ -64,7 +64,7 @@ if( !post_is_all_set() ) {
 
 save_image(get_image_folder_path($pdo));
 
-$sql = 'INSERT INTO centers(image_path,name,country,description,body,tags) 
+$sql = 'INSERT INTO products(image_path,name,country,description,body,tags) 
                     VALUES (:image_path, :name, :country, :description, :body, :tags)';
 $statement = $pdo -> prepare($sql);
 
