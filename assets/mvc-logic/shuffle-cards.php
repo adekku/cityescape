@@ -5,5 +5,4 @@ $sql = "SELECT*FROM products";
 $statement = $pdo->prepare($sql);
 $statement -> execute();
 $centers = $statement -> fetchAll();
-
 ?>

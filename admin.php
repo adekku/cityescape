@@ -25,7 +25,7 @@
     </tr>
   </thead>
   <tbody>
-    <?php foreach($centers as $id => $center): ?>
+    <?php foreach($centers as $id => $center): //display each product seperately ?>
       <tr>
         <th scope="row"><?= $id ?></th>
         <td>

@@ -1,4 +1,3 @@
-
 <?php require_once('require/header.php'); ?>
 <?php require_once('require/connect.php'); ?>
 
@@ -16,12 +15,12 @@
         </p>
 
         <?php
-                if(isset($_SESSION['message'])){
-                    echo '<p class="msg">'.$_SESSION['message'].'</p>';
-                    unset($_SESSION['message']);
-                }
-
-            ?>
+            //display error if any
+            if(isset($_SESSION['message'])){
+                echo '<p class="msg">'.$_SESSION['message'].'</p>';
+                unset($_SESSION['message']);
+            }
+        ?>
     </form>
 
 <?php require_once('require/footer.php'); ?>

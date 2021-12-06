@@ -2,7 +2,7 @@
 
 <main>
 <p></p>
-<h1>Add tourism center</h1>
+<h1>Добавить новый продукт</h1>
 <p>
   <a href="admin.php" class="btn btn-outline-primary">Back</a>
 </p>

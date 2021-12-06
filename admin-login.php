@@ -1,11 +1,13 @@
 <?php
 require_once('./require/connect.php');
 
+//take infor about the admin from the database
 $sql = "SELECT*FROM admin";
 $statement = $pdo -> prepare($sql);
 $statement -> execute();
 $admin = $statement -> fetch();
 
+//if POST values have been transfered succesfully, authorize admin
 if($admin === $_POST) {
   header('Location: ./admin.php');
 } else {
@@ -15,7 +17,6 @@ if($admin === $_POST) {
 ?>
 
 <?php require_once('./require/header.php') ?>
-
 <?php
   //ensure that no null values are passed to the system
   if(isset($_SESSION['message'])){

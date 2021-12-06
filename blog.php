@@ -7,7 +7,7 @@
       <section id="blog-list">
         <div class="grid_post_container">
 
-          <?php foreach($centers as $center): ?>
+          <?php foreach($centers as $center): //display each product seperately ?>
             <div class="post-card"><a class="post-card__category" href="post.php?id= <?=$center['id'] ?>"><?=$center['tags'] ?></a>
               <div class="post-card__featured-image" style="background-image: url(<?php echo '\''. './assets/mvc-logic/' . $center['image_path'].'\'' ?>);"></div>
               <div class="post-card__details">

@@ -1,13 +1,13 @@
 <?php
 require_once('./require/connect.php');
 
-error_reporting(0);
-
+//take info about the admin from the database
 $sql = "SELECT*FROM admin";
 $statement = $pdo -> prepare($sql);
 $statement -> execute();
 $admin = $statement -> fetch();
 
+//check that passwords are not null and old new passwords match
 if($_POST['newpassword'] != '' && $_POST['repeatpassword'] != '' && $_POST['currentpassword'] != ''){
   if($admin['password'] === $_POST['currentpassword']) {
     if($_POST['newpassword'] === $_POST['repeatpassword']) {
@@ -20,13 +20,13 @@ if($_POST['newpassword'] != '' && $_POST['repeatpassword'] != '' && $_POST['curr
     }
   }
 } else {
-  $_SESSION['message'] = 'Произошла ошибка при обработке данных';
+  //prepare warning for the user
+  $_SESSION['message'] = 'An error occurred while processing data';
 }
 
 ?>
 
 <?php require_once('./require/header.php') ?>
-
 <?php
   //ensure that no null values are passed to the system
   if(isset($_SESSION['message'])){

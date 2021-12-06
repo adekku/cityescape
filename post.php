@@ -34,7 +34,6 @@
         </div>
       </section>
 
-
       <h1>Оформить Заказ</h1>
       <!-- <?php var_dump($center) ?> -->
       <!-- <?php var_dump($_SESSION['user']['id']); ?> -->
@@ -59,6 +58,7 @@
     </div>
 
     <?php
+      // display errors if any
       if(isset($_SESSION['order_status'])){
           echo '<p class="msg">'.$_SESSION['order_status'].'</p>';
           unset($_SESSION['order_status']);

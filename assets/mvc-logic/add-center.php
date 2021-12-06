@@ -2,15 +2,15 @@
 //auxiliaries start
 require_once('../../require/connect.php');
 require_once('../../require/session.php');
-var_dump($_POST);
-var_dump($_FILES);
+// var_dump($_POST);
+// var_dump($_FILES);
 //auxiliaries end
 
 //functions start
 function post_is_all_set() {
   foreach($_POST as $value) {
     if($value == '') {
-      echo $value;
+      // echo $value;
       return false;
     }
   }
@@ -46,7 +46,13 @@ function save_image($image_folder_path) {
   $current_path = $_FILES['image_tourism_center']['tmp_name'];
   mkdir($image_folder_path);
   $image_path = get_image_path($image_folder_path);
-  move_uploaded_file($current_path, $image_path);
+
+  //error handling
+  if (move_uploaded_file($current_path, $image_path)) {
+    $_SESSION['messege'] = 'Error occured while uploading file';
+    header('Location: ../../admin-add.php');
+    exit;
+  };
 }
 
 function get_image_path($image_folder_path) {
@@ -56,6 +62,8 @@ function get_image_path($image_folder_path) {
 //functions end
 
 //code
+
+//error handling
 if( !post_is_all_set() ) {
   $_SESSION['message'] = 'fill all values';
   header('Location: ../../admin-add.php');
@@ -68,18 +76,16 @@ $sql = 'INSERT INTO products(image_path,name,country,description,body,tags)
                     VALUES (:image_path, :name, :country, :description, :body, :tags)';
 $statement = $pdo -> prepare($sql);
 
-$statement ->bindValue( ':image_path', get_image_path('../uploaded_images/'. (get_current_max_id($pdo)+1)) );
-$statement ->bindValue(':name', $_POST['name']);
-$statement ->bindValue(':country', $_POST['country']);
-$statement ->bindValue(':description', $_POST['description']);
-$statement ->bindValue(':body', $_POST['body']);
-$statement ->bindValue(':tags', $_POST['tags']);
+$statement -> bindValue( ':image_path', get_image_path('../uploaded_images/'. (get_current_max_id($pdo)+1)) );
+$statement -> bindValue(':name', $_POST['name']);
+$statement -> bindValue(':country', $_POST['country']);
+$statement -> bindValue(':description', $_POST['description']);
+$statement -> bindValue(':body', $_POST['body']);
+$statement -> bindValue(':tags', $_POST['tags']);
 
 $statement -> execute();
 
-$_SESSION['message'] = 'Center has been successfully added';
-
-
+$_SESSION['message'] = 'Product has been successfully added';
 
 header('Location: ../../admin-add.php');
 //code end

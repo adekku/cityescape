@@ -2,17 +2,19 @@
 require_once('../../require/connect.php');
 session_start();
 
-var_dump($_GET);
+//match info from the previous page
 $user_id = $_GET['user_id'];
 $product_id = $_GET['product_id'];
 $product_name = $_GET['product_name'];
 
+//match info from forms
 $quantity = $_POST['quantity'];
 $shipment_location = $_POST['shipment_location'];
 $additional_information = $_POST['additional_information'];
 
 $approved = false;
 
+//save the order into the database
 $sql = 'INSERT INTO orders(user_id, product_id, product_name, quantity, shipment_location, additional_information, approved)
         VALUES(:user_id, :product_id, :product_name, :quantity, :shipment_location, :additional_information, :approved)';
 

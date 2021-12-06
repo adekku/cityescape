@@ -28,6 +28,7 @@
         </p>
 
             <?php
+                //display errors if any
                 if(isset($_SESSION['message'])){
                     echo '<p class="msg">'.$_SESSION['message'].'</p>';
                     unset($_SESSION['message']);
@@ -35,4 +36,5 @@
 
             ?>
     </form>
+    
 <?php require_once('require/footer.php'); ?>

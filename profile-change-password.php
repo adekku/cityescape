@@ -1,16 +1,22 @@
 <?php
 require_once('./require/connect.php');
 
-error_reporting(0);
+//take id of the user
+if (isset($_GET['id'])) {
+  $id = $_GET['id'];
+} else {
+  $_SESSION['message'] = 'error occured while identifying a user';
+  header('location: login.php');
+}
 
-$id = $_GET['id'];
-
+//take info of the user by id
 $sql = "SELECT*FROM users WHERE id=:id";
 $statement = $pdo -> prepare($sql);
 $statement -> bindValue(':id', $id);
 $statement -> execute();
 $user = $statement -> fetch();
 
+//check all passwords are not null and new passwords match
 if($_POST['newpassword'] != '' && $_POST['repeatpassword'] != '' && $_POST['currentpassword'] != ''){
   if($user['password'] === md5($_POST['currentpassword'])) {
     if($_POST['newpassword'] === $_POST['repeatpassword']) {

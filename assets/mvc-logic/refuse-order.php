@@ -1,5 +1,4 @@
 <?php
-
 require_once('../../require/connect.php');
 var_dump($_GET);
 $id = $_GET['id'];
@@ -10,5 +9,4 @@ $statement -> bindValue(':id', $id);
 $statement -> execute();
 
 header('location: ../../admin-manage-orders.php');
-
 ?>
