@@ -1,7 +1,7 @@
 <?php require_once('require/header.php'); ?>
 <?php require_once('require/connect.php'); ?>
 
-
+    <!-- form for user registration -->
     <form action="./vendor/signup.php" method="POST" enctype="multipart/form-data">
         <label for="">Полное имя</label>
         <input type="text" name="full_name" placeholder="examplelogin" required>
@@ -10,10 +10,10 @@
         <input type="text" name="login" placeholder="examplelogin" required>
 
         <label for="">Номер телефона</label>
-        <input type="text" name="phone_number" placeholder="+77712391337" required>
+        <input type="tel" name="phone_number" placeholder="+77712391337" required>
 
         <label for="">Электронная почта</label>
-        <input type="text" name="email" placeholder="examplemail@gmail.com" required>
+        <input type="email" name="email" placeholder="examplemail@gmail.com" required>
 
         <label for="">Пароль</label>
         <input type="password" name="password" placeholder="examplepassword" required>

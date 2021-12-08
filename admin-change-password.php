@@ -1,26 +1,27 @@
 <?php
+//connects a module. The module connects this file to the database
 require_once('./require/connect.php');
 
 //take info about the admin from the database
-$sql = "SELECT*FROM admin";
-$statement = $pdo -> prepare($sql);
-$statement -> execute();
-$admin = $statement -> fetch();
+$sql = "SELECT*FROM admin"; //formulate an sql statement
+$statement = $pdo -> prepare($sql); //prepare the sql statement
+$statement -> execute(); //execute the sql statement
+$admin = $statement -> fetch(); //if returns something, store it in admin variable
 
 //check that passwords are not null and old new passwords match
 if($_POST['newpassword'] != '' && $_POST['repeatpassword'] != '' && $_POST['currentpassword'] != ''){
   if($admin['password'] === $_POST['currentpassword']) {
     if($_POST['newpassword'] === $_POST['repeatpassword']) {
-      $sql = "UPDATE admin SET password=:password";
-      $statement = $pdo -> prepare($sql);
-      $statement -> bindValue(':password', $_POST['newpassword']);
+      $sql = "UPDATE admin SET password=:password"; 
+      $statement = $pdo -> prepare($sql); 
+      $statement -> bindValue(':password', $_POST['newpassword']); //when executing the prepared sql, replace :password with actual new password
       $statement -> execute();
 
-      header('location: ./admin-login.php');
+      header('location: ./admin-login.php'); //automatically redirect to the login page if successful
     }
   }
 } else {
-  //prepare warning for the user
+  //prepare warning for the admin if unsuccessful
   $_SESSION['message'] = 'An error occurred while processing data';
 }
 
@@ -36,7 +37,7 @@ if($_POST['newpassword'] != '' && $_POST['repeatpassword'] != '' && $_POST['curr
 ?>
 <form action="" method="POST">
   <label for="" class="form-label">Используемый пароль</label>
-  <input class="form-control" type="text" placeholder="exampleusername" required name="currentpassword">
+  <input class="form-control" type="password" placeholder="exampleusername" required name="currentpassword">
 
   <label for="" class="form-label">Новый Пароль</label>
   <input class="form-control" type="password" placeholder="examplenewpassword" required name="newpassword">

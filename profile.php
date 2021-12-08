@@ -4,7 +4,7 @@
     //take info of the user
     $sql = 'SELECT*FROM users WHERE id=:id';
     $statement = $pdo -> prepare($sql);
-    $statement -> bindValue(':id', $_SESSION['user']['id']);
+    $statement -> bindValue(':id', $_SESSION['user']['id']); //associate values before execution
     $statement -> execute();
     $user = $statement -> fetch();
 ?>

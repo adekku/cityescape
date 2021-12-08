@@ -2,8 +2,6 @@
 //auxiliaries start
 require_once('../../require/connect.php');
 require_once('../../require/session.php');
-// var_dump($_POST);
-// var_dump($_FILES);
 //auxiliaries end
 
 //functions start
@@ -29,6 +27,7 @@ function get_current_max_id($pdo) {
   $result = $statement -> fetch();  
   $current_max_id = intval( $result['MAX(id)'] );
 
+  //if max id = 0, there is no id. Create id+1 in such case but leave no record
   $sql = 'DELETE FROM products WHERE id=:id';
   $statement = $pdo -> prepare($sql);
   $statement -> bindValue(':id', $current_max_id);
@@ -37,11 +36,13 @@ function get_current_max_id($pdo) {
   return $current_max_id;
 }
 
+//calculate image folder path
 function get_image_folder_path($pdo) {
   $image_folder_path = '../uploaded_images/'. (get_current_max_id($pdo)+2);
   return $image_folder_path;
 }
 
+//save image, return null
 function save_image($image_folder_path) {
   $current_path = $_FILES['image_tourism_center']['tmp_name'];
   mkdir($image_folder_path);
@@ -49,7 +50,7 @@ function save_image($image_folder_path) {
 
   //error handling
   if (move_uploaded_file($current_path, $image_path)) {
-    $_SESSION['messege'] = 'Error occured while uploading file';
+    $_SESSION['message'] = 'Error occured while uploading file';
     header('Location: ../../admin-add.php');
     exit;
   };
@@ -61,7 +62,7 @@ function get_image_path($image_folder_path) {
 }
 //functions end
 
-//code
+//code start
 
 //error handling
 if( !post_is_all_set() ) {
@@ -76,6 +77,7 @@ $sql = 'INSERT INTO products(image_path,name,country,description,body,tags)
                     VALUES (:image_path, :name, :country, :description, :body, :tags)';
 $statement = $pdo -> prepare($sql);
 
+//associate values before execution
 $statement -> bindValue( ':image_path', get_image_path('../uploaded_images/'. (get_current_max_id($pdo)+1)) );
 $statement -> bindValue(':name', $_POST['name']);
 $statement -> bindValue(':country', $_POST['country']);

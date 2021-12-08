@@ -25,13 +25,12 @@ if($_POST['newpassword'] != '' && $_POST['repeatpassword'] != '' && $_POST['curr
       $statement -> bindValue(':password', md5($_POST['newpassword']));
       $statement -> execute();
 
-      header('location: ./login.php');
+      header('location: ./login.php'); //redirect to user login page
     }
   }
 } else {
-  $_SESSION['message'] = 'passwords do not match';
+  $_SESSION['message'] = 'passwords do not match'; //display an error if any
 }
-
 ?>
 
 <?php require_once('./require/header.php') ?>
@@ -45,7 +44,7 @@ if($_POST['newpassword'] != '' && $_POST['repeatpassword'] != '' && $_POST['curr
 ?>
 <form action="" method="POST">
   <label for="" class="form-label">Current Password</label>
-  <input class="form-control" type="text" placeholder="exampleusername" required name="currentpassword">
+  <input class="form-control" type="password" placeholder="exampleusername" required name="currentpassword">
 
   <label for="" class="form-label">New Password</label>
   <input class="form-control" type="password" placeholder="examplenewpassword" required name="newpassword">

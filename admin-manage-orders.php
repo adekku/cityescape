@@ -1,42 +1,55 @@
+<?php require_once('require/header.php'); ?>
+
 <?php
-//take information about the orders, users, and products from the database 
 require_once('./require/connect.php');
-$sql = 'SELECT*FROM orders
+//take information about the orders, users, and products from the database 
+
+$sql = 'SELECT*FROM orders 
         INNER JOIN users ON orders.user_id = users.id
-        INNER JOIN products ON orders.product_id = products.id';
+        INNER JOIN products ON orders.product_id = products.id'; //multiple tables selection 
 
 $statement = $pdo -> prepare($sql);
 $statement -> execute();
-$orders = $statement -> fetchAll(); //save query result in an array
-// var_dump($orders);
+$orders = $statement -> fetchAll(); //if the query returns something, store it in a variable or throw an error
+
+foreach($orders as $key => $order) {
+  $orders[$key] = array_except($order, ['password', 'image_path']);
+  if($orders[$key]['approved'] == 0) {
+    $orders[$key]['approved'] = 'в ожидании';
+  } else if($orders[$key]['approved'] == 1) {
+    $orders[$key]['approved'] = 'принят';
+  } else {
+    $orders[$key]['approved'] = 'отклонен';
+  } //convert -1, 0, 1 to refused, pending, and accepted respectively
+}
+
+//unset key-value pairs in a given array
+function array_except($array, $keys) {
+  return array_diff_key($array, array_flip((array) $keys));   
+} 
 ?>
 
-<?php require_once('require/header.php'); ?>
+<!-- nested loops -->
 <table class="table">
   <thead>
+    <?php foreach($orders as $id => $order): ?>
     <tr>
-      <th scope="col">id</th>
-      <th scope="col">Имя пользователя</th>
-      <th scope="col">Название товара</th>
-      <th scope="col">Количество</th>
-      <th scope="col">Адрес доставки</th>
-      <th scope="col">Дополнительная информация</th>
-      <th scope="col">Дата заказа</th>
-      <th scope="col">Статус</th>
-      <th scope="col">Действие</th>
-    </tr>
+    <th scope="col"><?php echo $id?></th>
+      <?php foreach($order as $name => $value): ?>
+          <th scope="col"><?php echo $name ?></th>
+      <?php endforeach ?>
+      <th scope="col">action</th>
+      <?php break ?>
+      <?php endforeach ?>
   </thead>
   <tbody>
     <?php foreach($orders as $id => $order): ?>
     <tr>
       <th scope="row"><?php echo $id ?></th>
-      <td><?php echo $order['full_name'] ?></td>
-      <td><?php echo $order['product_name'] ?></td>
-      <td><?php echo $order['quantity'] ?></td>
-      <td><?php echo $order['shipment_location'] ?></td>
-      <td><?php echo $order['additional_information'] ?></td>
-      <td><?php echo $order['creation_date'] ?></td>
-      <td><?php echo $order['approved'] ?></td>
+      <?php foreach($order as $name => $value): ?>
+          <td><?php echo $value ?></td>
+      <?php endforeach ?>
+
       <td>
         <a href="./assets/mvc-logic/approve-order.php?id=<?php echo $order['id'] ?>" class="btn btn-sm btn-outline-success">Подтвердить</a>
         <a href="./assets/mvc-logic/refuse-order.php?id=<?php echo $order['id'] ?>" class="btn btn-sm btn-outline-danger">Отказать</a>

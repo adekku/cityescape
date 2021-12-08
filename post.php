@@ -40,7 +40,7 @@
       <form action="./assets/mvc-logic/make-order.php/?user_id=<?php echo $_SESSION['user']['id'] ?>&product_id=<?php echo $center['id'] ?>&product_name=<?php echo $center['name']?>" method="POST">
         <div>
           <label for="">Количество(шт)</label>
-          <input type="" name="quantity" class="form-control" required>
+          <input type="number" name="quantity" class="form-control" required>
         </div>
 
         <div>

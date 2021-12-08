@@ -1,4 +1,5 @@
 <?php require_once('require/header.php'); ?>
+<!-- add a prepared module  -->
 <?php require_once('assets/mvc-logic/display-center.php'); ?>
 
 <main>
@@ -31,7 +32,7 @@
         <td>
           <img src="<?= 'assets/mvc-logic/'. $center['image_path'] ?>" alt="fail to upload" class="img-thumbnail">
         </td>
-        <td><?= $center['name'] ?></td>
+        <td><?= $center['name'] ?></td> 
         <td><?= $center['country'] ?></td>
         <td><?= $center['description'] ?></td>
         <td><?= $center['body'] ?></td>

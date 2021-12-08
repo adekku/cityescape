@@ -4,11 +4,9 @@ require_once('./require/connect.php');
 //select all orders of the users and save them in an array
 $sql = 'SELECT*FROM orders WHERE user_id=:user_id';
 $statement = $pdo -> prepare($sql);
-$statement ->bindValue(':user_id', $_SESSION['user']['id']);
+$statement ->bindValue(':user_id', $_SESSION['user']['id']); //associate values when executing a statement
 $statement -> execute();
 $orders = $statement -> fetchAll();
-
-// var_dump($orders);
 ?>
 
 <?php require_once('require/header.php'); ?>
@@ -25,7 +23,8 @@ $orders = $statement -> fetchAll();
     </tr>
   </thead>
   <tbody>
-    <?php foreach($orders as $id => $order): //display each order seperately ?>
+    <!-- display each order seperately -->
+    <?php foreach($orders as $id => $order): ?>
     <tr>
       <th scope="row"><?php echo $id ?></th>
       <td><?php echo $order['product_name'] ?></td>

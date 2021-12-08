@@ -40,11 +40,10 @@ $statement->bindValue(':email', $email);
 $statement->bindValue(':id', $id);
 $statement->execute();
 
-header('Location: profile.php');
 } else {
   $_SESSION['message'] = 'Error occured while retrieving information from the form';
-  header('Location: profile.php');
 }
+header('Location: profile.php'); //redirect to profile in either case
 ?>
 
 <h1>
@@ -52,6 +51,7 @@ header('Location: profile.php');
 </h1>
 <h1>Update User: <b><?php echo $user['login'] ?></b></h1>
 
+<!-- display each error separately -->
 <?php if (!empty($errors)): ?>
     <div class="alert alert-danger">
         <?php foreach ($errors as $error): ?>
@@ -73,12 +73,12 @@ header('Location: profile.php');
 
     <div class="form-group">
       <label for="">Phone Number</label>
-      <input type="text" name="phone_number" placeholder="+77712391337" value="<?php echo $phone_number ?>" required>
+      <input type="tel" name="phone_number" placeholder="+77712391337" value="<?php echo $phone_number ?>" required>
     </div>
 
     <div class="form-group">
       <label for="">Email</label>
-      <input type="text" name="email" placeholder="examplelogin" value="<?php echo $email ?>" required>
+      <input type="email" name="email" placeholder="examplelogin" value="<?php echo $email ?>" required>
     </div>
 
     <button type="submit" class="btn btn-primary">Submit</button>

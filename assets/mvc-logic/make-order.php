@@ -18,6 +18,7 @@ $approved = false;
 $sql = 'INSERT INTO orders(user_id, product_id, product_name, quantity, shipment_location, additional_information, approved)
         VALUES(:user_id, :product_id, :product_name, :quantity, :shipment_location, :additional_information, :approved)';
 
+//bind values before execution
 $statement = $pdo -> prepare($sql);
 $statement -> bindValue(':user_id', $user_id);
 $statement -> bindValue(':product_id', $product_id);

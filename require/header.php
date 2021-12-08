@@ -35,7 +35,6 @@
       <a href="admin-login.php"> Админ Панель</a>
       <a href="login.php">Войти / Зарегистрироваться</a>
       <a href="orders.php">Здравствуйте, <?php echo($_SESSION['user']['full_name']) ?></a>
-      
       </menu>
     </section>
 </header>

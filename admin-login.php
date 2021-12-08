@@ -9,7 +9,7 @@ $admin = $statement -> fetch();
 
 //if POST values have been transfered succesfully, authorize admin
 if($admin === $_POST) {
-  header('Location: ./admin.php');
+  header('Location: ./admin.php'); //redirect to admin panel
 } else {
   $_SESSION['message'] = 'username or password is incorrect';
 }

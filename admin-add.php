@@ -23,27 +23,27 @@
 
   <div class="mb-3">
     <label class="form-label">Имя</label>
-    <input type="text" name="name" placeholder="Kitkat" class="form-control">
+    <input required type="text" name="name" placeholder="Kitkat" class="form-control">
   </div>
 
   <div class="mb-3">
     <label class="form-label">Страна</label>
-    <input type="text" name="country" placeholder="Russia" class="form-control">
+    <input required type="text" name="country" placeholder="Russia" class="form-control">
   </div>
 
   <div class="mb-3">
     <label class="form-label">Описание</label>
-    <input type="text" name="description" placeholder="Серия шоколадных батончиков" class="form-control">
+    <input required type="text" name="description" placeholder="Серия шоколадных батончиков" class="form-control">
   </div>
 
   <div class="mb-3">
     <label class="form-label">Основной Текст</label>
-    <input type="text" name="body" placeholder="Срок годности: около 9 месяцев с даты изготовления. Хранить при температуре от +15 °C до +21 °C при относительной влажности не более 75 %." class="form-control">
+    <input required type="text" name="body" placeholder="Срок годности: около 9 месяцев с даты изготовления. Хранить при температуре от +15 °C до +21 °C при относительной влажности не более 75 %." class="form-control">
   </div>
 
   <div class="mb-3">
     <label class="form-label">Тэги</label>
-    <input type="text" name="tags" placeholder="шоколад, батончик, Nestle" class="form-control">
+    <input required type="text" name="tags" placeholder="шоколад, батончик, Nestle" class="form-control">
   </div>
 
   <button class="btn btn-success" type="submit">Добавить</button>
